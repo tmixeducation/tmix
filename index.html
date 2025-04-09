@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TMIX Education - Trung tâm đào tạo chất lượng cao tại Hà Nội.">
+  <meta name="keywords" content="TMIX, giáo dục, học thêm, luyện thi, trung tâm giáo dục">
+  <meta name="author" content="TMIX Team">  
+  <title>TMIX Education</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="./images/tmix.jpg">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- 🔺 HEADER -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <img src="./images/tmix.jpg" alt="TMIX Logo" class="h-16 w-16 object-contain" />
+        <span class="text-2xl font-bold">
+          <span class="text-red-600">TMIX</span><span class="text-blue-800">EDUCATION</span>
+        </span>
+      </div>
+  
+      <!-- Nút hamburger cho mobile -->
+      <button id="menu-btn" class="md:hidden text-blue-800 text-3xl focus:outline-none">
+        ☰
+      </button>
+  
+      <!-- Nav -->
+      <nav id="menu" class="hidden md:flex flex-col md:flex-row absolute md:static bg-white md:bg-transparent top-full left-0 w-full md:w-auto px-4 md:px-0 py-3 md:py-0 shadow-md md:shadow-none z-40">
+        <a href="#" class="block px-2 py-1 md:py-0 hover:bg-red-600 hover:text-white hover:border hover:border-red-600 rounded">Trang chủ</a>
+        <a href="#" class="block px-2 py-1 md:py-0 hover:bg-red-600 hover:text-white hover:border hover:border-red-600 rounded">Giới thiệu</a>
+        <a href="#" class="block px-2 py-1 md:py-0 hover:bg-red-600 hover:text-white hover:border hover:border-red-600 rounded">Tuyển sinh</a>
+        <a href="#" class="block px-2 py-1 md:py-0 hover:bg-red-600 hover:text-white hover:border hover:border-red-600 rounded">Tin tức</a>
+        <a href="#" class="block px-2 py-1 md:py-0 hover:bg-red-600 hover:text-white hover:border hover:border-red-600 rounded">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+  
+
+  <!-- 🏠 BODY -->
+  <main class="mt-6 max-w-7xl mx-auto px-4">
+    <!-- Banner -->
+    <section class="bg-blue-50 rounded-lg shadow-md mb-8 relative overflow-hidden">
+      <div class="relative h-60 rounded-t-lg">
+        <div id="slider" class="w-full h-full flex transition-transform duration-500">
+          <img src="./images/classroom.jpg?auto=format&fit=crop&w=1200&h=400&q=80" class="w-full object-cover flex-shrink-0" alt="Slide 1" />
+          <img src="./images/teach.jpg?auto=format&fit=crop&w=1200&h=400&q=80" class="w-full object-cover flex-shrink-0" alt="Slide 2" />
+          <img src="./images/study.jpg?auto=format&fit=crop&w=1200&h=400&q=80" class="w-full object-cover flex-shrink-0" alt="Slide 3" />
+          <img src="./images/toanhoc.jpg?auto=format&fit=crop&w=1200&h=400&q=80" class="w-full object-cover flex-shrink-0" alt="Slide 4" />  
+        </div>
+    
+        <!-- Nút trái -->
+        <button onclick="moveSlide(-1)" class="absolute top-1/2 left-3 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 rounded-full p-2 shadow">
+          &#10094;
+        </button>
+    
+        <!-- Nút phải -->
+        <button onclick="moveSlide(1)" class="absolute top-1/2 right-3 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 rounded-full p-2 shadow">
+          &#10095;
+        </button>
+      </div>
+    
+      <div class="p-6 text-center">
+        <h1 class="text-3xl font-bold text-blue-800 mb-2">Chào mừng đến với TMIX EDUCATION</h1>
+        <p class="text-gray-600 mb-4">Nâng tầm tri thức – Phát triển tương lai</p>
+        <a href="https://zalo.me/0977730167" 
+          target="_blank"
+          class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-full transition">
+          Đăng ký học ngay
+        </a>
+      </div>
+    </section>
+    
+    
+
+
+    <!-- Giới thiệu -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-blue-800 mb-4">Giới thiệu về chúng tôi</h2>
+      <p class="text-gray-700 leading-relaxed">
+        TMIX Education là trung tâm đào tạo và định hướng học tập chất lượng cao. Với đội ngũ giảng viên uy tín, phương pháp giảng dạy hiện đại, chúng tôi cam kết mang lại môi trường học tập tốt nhất cho học viên trên toàn quốc.
+      </p>
+    </section>
+
+    <!-- Tin tức -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-blue-800 mb-4">Tin tức mới</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-lg font-semibold text-red-600 mb-2">Tuyển sinh năm học mới 2025</h3>
+          <p class="text-gray-600 text-sm">Đăng ký ngay để nhận học bổng lên đến 50%</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-lg font-semibold text-red-600 mb-2">Lịch khai giảng các lớp hè</h3>
+          <p class="text-gray-600 text-sm">Bắt đầu từ 10/6 với nhiều môn học phong phú</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-lg font-semibold text-red-600 mb-2">Workshop kỹ năng mềm miễn phí</h3>
+          <p class="text-gray-600 text-sm">Diễn ra tại trung tâm TP.HCM vào cuối tháng 5</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 🔻 FOOTER -->
+  <footer class="bg-blue-900 text-white mt-12 py-6">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-6">
+      <div>
+        <h4 class="font-semibold text-lg mb-2">TMIX EDUCATION</h4>
+      
+        <p class="flex items-start gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6c0 4.418 6 10 6 10s6-5.582 6-10a6 6 0 00-6-6zM8 8a2 2 0 114 0 2 2 0 01-4 0z" clip-rule="evenodd" />
+          </svg>
+          Địa chỉ: Xóm 3, An Trai, Vân Canh, Hoài Đức, Hà Nội
+        </p>
+      
+        <p class="flex items-start gap-2 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2.003 5.884l2-3a1 1 0 011.664-.09l2.062 2.577a1 1 0 01-.204 1.416l-.94.705a11.042 11.042 0 005.292 5.292l.705-.94a1 1 0 011.416-.204l2.577 2.062a1 1 0 01-.09 1.664l-3 2a1 1 0 01-1.09.04c-2.58-1.381-4.954-3.755-6.334-6.334a1 1 0 01.04-1.09z" />
+          </svg>
+          Điện thoại: 0977 730 167
+        </p>
+      
+        <p class="flex items-start gap-2 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2.01 6.41A2 2 0 014 5h16a2 2 0 011.99 1.41L12 13.6 2.01 6.41zM2 8.33V18a2 2 0 002 2h16a2 2 0 002-2V8.33l-9.6 6.3a1 1 0 01-1.1 0L2 8.33z"/>
+          </svg>
+          Email: tmixeducation@gmail.com
+        </p>
+      </div>      
+      <div>
+        <h4 class="font-semibold text-lg mb-2">Liên kết nhanh</h4>
+        <ul>
+          <li><a href="#" class="hover:underline">Tuyển sinh</a></li>
+          <li><a href="#" class="hover:underline">Lịch học</a></li>
+          <li><a href="#" class="hover:underline">Tài liệu</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-2">Bản đồ</h4>
+        <iframe class="w-full h-32 rounded" 
+                src="https://maps.google.com/maps?q=Xóm%203,%20An%20Trai,%20Vân%20Canh,%20Hoài%20Đức,%20Hà%20Nội&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>        
+      </div>
+    </div>
+    <div class="text-center mt-4 text-sm text-gray-300">© 2025 TMIX EDUCATION. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const images = [
+      "./images/classroom.jpg?auto=format&fit=crop&w=1200&h=400&q=80",
+      "./images/teach.jpg?auto=format&fit=crop&w=1200&h=400&q=80",
+      "./images/study.jpg?auto=format&fit=crop&w=1200&h=400&q=80",
+      "./images/toanhoc.jpg?auto=format&fit=crop&w=1200&h=400&q=80"
+    ];
+  
+    let index = 0;
+    const container = document.getElementById("slide-container");
+  
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      container.innerHTML = `<img src="${images[index]}" class="w-full h-60 object-cover" />`;
+    }, 4000); // đổi ảnh sau mỗi 4 giây
+  </script>
+
+  <script>
+    // ----- Script cho slider -----
+    let currentIndex = 0;
+    const slider = document.getElementById("slider");
+    const totalSlides = slider.children.length;
+
+    function moveSlide(step) {
+      currentIndex = (currentIndex + step + totalSlides) % totalSlides;
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    setInterval(() => moveSlide(1), 5000); // Auto slide
+
+    // ----- Script cho menu hamburger -----
+    const menuBtn = document.getElementById("menu-btn");
+    const menu = document.getElementById("menu");
+
+    // Toggle menu khi bấm nút
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // Ngăn việc sự kiện click lan ra document
+      menu.classList.toggle("hidden");
+    });
+
+    // Ngăn click bên trong menu đóng menu
+    menu.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    // Khi click bất kỳ chỗ nào ngoài menu thì đóng menu
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+    });
+  </script>
+
+
+
+</body>
+</html>
