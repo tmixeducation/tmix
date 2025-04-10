@@ -153,13 +153,14 @@
       <p class="text-gray-700 leading-relaxed mb-4">
         Chúng tôi luôn sẵn sàng hỗ trợ bạn! Vui lòng điền thông tin dưới đây hoặc liên hệ trực tiếp qua Zalo.
       </p>
+      <!-- Trong phần form -->
       <form id="contact-form" class="space-y-4 max-w-md mx-auto">
         <input type="text" name="name" placeholder="Họ và tên" class="w-full p-2 rounded border" required />
         <input type="tel" name="phone" placeholder="Số điện thoại" class="w-full p-2 rounded border" required />
         <textarea name="message" placeholder="Tin nhắn" class="w-full p-2 rounded border h-32" required></textarea>
-        <button type="submit" class="bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition">Gửi</button>
+        <button type="submit" id="submit-btn" class="bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition">Gửi</button>
       </form>
-      <p id="form-message" class="text-center mt-4 text-green-600 hidden">Tin nhắn của bạn đã được gửi thành công!</p>
+      <p id="form-message" class="text-center mt-4 text-green-600 hidden animate-bounce">Tin nhắn của bạn đã được gửi thành công!</p>
     </section>
   </main>
 
@@ -206,7 +207,7 @@
 
   <!-- Nút cuộn lên đầu -->
   <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-5 right-5 bg-red-600 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg hover:bg-red-700">↑</button>
-
+  
   <!-- JavaScript -->
   <script>
     // Slider
@@ -282,11 +283,14 @@
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Lấy dữ liệu từ form
-      const formData = new FormData(this);
-      const urlEncodedData = new URLSearchParams(formData).toString(); // Chuyển FormData thành x-www-form-urlencoded
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Đang gửi...';
+      submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
-      const url = 'https://script.google.com/macros/s/AKfycbym0ho3xWs6WxyZje1c0mqZ2-64JzspEFwFTgc_aedlI7zU2aea_99D-NZ_KbHEpF0k/exec'; // Thay bằng URL Web App mới
+      const formData = new FormData(this);
+      const urlEncodedData = new URLSearchParams(formData).toString();
+      const url = 'https://script.google.com/macros/s/AKfycbym0ho3xWs6WxyZje1c0mqZ2-64JzspEFwFTgc_aedlI7zU2aea_99D-NZ_KbHEpF0k/exec';
 
       fetch(url, {
         method: 'POST',
@@ -297,23 +301,29 @@
       })
       .then(response => response.text())
       .then(data => {
-        console.log("Response from Apps Script:", data); // Ghi log phản hồi
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Gửi';
+        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
         if (data === 'Success') {
           document.getElementById('form-message').classList.remove('hidden');
-          this.reset(); // Xóa dữ liệu form sau khi gửi thành công
+          this.reset();
           setTimeout(() => {
             document.getElementById('form-message').classList.add('hidden');
-          }, 3000); // Ẩn thông báo sau 3 giây
+          }, 5000); // Tăng thời gian hiển thị lên 5 giây
         } else {
           alert('Có lỗi xảy ra, vui lòng thử lại! Response: ' + data);
         }
       })
       .catch(error => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Gửi';
+        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
         console.error('Error:', error);
         alert('Có lỗi xảy ra, vui lòng thử lại! Error: ' + error);
       });
-    });
-
+    }); 
     // Mặc định hiển thị Trang chủ
     showSection('home');
   </script>
