@@ -151,11 +151,10 @@
     <section id="contact" class="content-section hidden">
       <h2 class="text-2xl font-semibold text-blue-800 mb-4">Liên hệ</h2>
       <p class="text-gray-700 leading-relaxed mb-4">
-        Chúng tôi luôn sẵn sàng hỗ trợ bạn! Vui lòng điền thông tin dưới đây hoặc liên hệ trực tiếp qua Zalo, email.
+        Chúng tôi luôn sẵn sàng hỗ trợ bạn! Vui lòng điền thông tin dưới đây hoặc liên hệ trực tiếp qua Zalo.
       </p>
       <form id="contact-form" class="space-y-4 max-w-md mx-auto">
         <input type="text" name="name" placeholder="Họ và tên" class="w-full p-2 rounded border" required />
-        <input type="email" name="email" placeholder="Email" class="w-full p-2 rounded border" required />
         <input type="tel" name="phone" placeholder="Số điện thoại" class="w-full p-2 rounded border" required />
         <textarea name="message" placeholder="Tin nhắn" class="w-full p-2 rounded border h-32" required></textarea>
         <button type="submit" class="bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition">Gửi</button>
@@ -279,59 +278,44 @@
       });
     });
 
-    // Mặc định hiển thị Trang chủ
-    showSection('home');
-
-    // Xử lý form liên hệ với Google Sheets
-    const contactForm = document.getElementById('contact-form');
-    const formMessage = document.getElementById('form-message');
-    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbym0ho3xWs6WxyZje1c0mqZ2-64JzspEFwFTgc_aedlI7zU2aea_99D-NZ_KbHEpF0k/exec'; // Thay bằng Web App URL từ Google Apps Script
-
-    contactForm.addEventListener('submit', (e) => {
+    // Xử lý gửi form qua Google Sheets
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
 
       // Lấy dữ liệu từ form
-      const formData = new FormData(contactForm);
-      const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        message: formData.get('message')
-      };
+      const formData = new FormData(this);
+      const urlEncodedData = new URLSearchParams(formData).toString(); // Chuyển FormData thành x-www-form-urlencoded
 
-      // Gửi dữ liệu đến Google Sheets
-      fetch(GOOGLE_SHEET_URL, {
+      const url = 'https://script.google.com/macros/s/AKfycbym0ho3xWs6WxyZje1c0mqZ2-64JzspEFwFTgc_aedlI7zU2aea_99D-NZ_KbHEpF0k/exec'; // Thay bằng URL Web App mới
+
+      fetch(url, {
         method: 'POST',
-        body: JSON.stringify(data),
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: urlEncodedData
       })
-      .then(response => response.json())
-      .then(result => {
-        formMessage.classList.remove('hidden');
-        if (result.status === 'success') {
-          formMessage.classList.remove('text-red-600');
-          formMessage.classList.add('text-green-600');
-          formMessage.textContent = result.message;
-          contactForm.reset();
+      .then(response => response.text())
+      .then(data => {
+        console.log("Response from Apps Script:", data); // Ghi log phản hồi
+        if (data === 'Success') {
+          document.getElementById('form-message').classList.remove('hidden');
+          this.reset(); // Xóa dữ liệu form sau khi gửi thành công
+          setTimeout(() => {
+            document.getElementById('form-message').classList.add('hidden');
+          }, 3000); // Ẩn thông báo sau 3 giây
         } else {
-          formMessage.classList.remove('text-green-600');
-          formMessage.classList.add('text-red-600');
-          formMessage.textContent = result.message;
+          alert('Có lỗi xảy ra, vui lòng thử lại! Response: ' + data);
         }
-        setTimeout(() => {
-          formMessage.classList.add('hidden');
-        }, 3000);
       })
       .catch(error => {
-        formMessage.classList.remove('hidden');
-        formMessage.classList.remove('text-green-600');
-        formMessage.classList.add('text-red-600');
-        formMessage.textContent = "Có lỗi xảy ra, vui lòng thử lại!";
-        console.error('Fetch error:', error);
+        console.error('Error:', error);
+        alert('Có lỗi xảy ra, vui lòng thử lại! Error: ' + error);
       });
     });
+
+    // Mặc định hiển thị Trang chủ
+    showSection('home');
   </script>
 
   <!-- CSS bổ sung cho hiệu ứng -->
